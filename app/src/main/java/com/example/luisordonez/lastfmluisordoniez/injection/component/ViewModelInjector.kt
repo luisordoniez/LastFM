@@ -1,7 +1,7 @@
 package com.example.luisordonez.lastfmluisordoniez.injection.component
 
 import com.example.luisordonez.lastfmluisordoniez.injection.module.NetworkModule
-import com.example.luisordonez.lastfmluisordoniez.ui.post.PostListViewModel
+import com.example.luisordonez.lastfmluisordoniez.ui.main.PostListViewModel
 import dagger.Component
 import javax.inject.Singleton
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.luisordonez.lastfmluisordoniez.ui.post.PostViewModel" />
+            type="com.example.luisordonez.lastfmluisordoniez.ui.main.PostViewModel" />
     </data>
 
     <android.support.v7.widget.CardView

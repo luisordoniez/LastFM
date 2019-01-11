@@ -1,13 +1,18 @@
-package com.example.luisordonez.lastfmluisordoniez
+package com.example.luisordonez.lastfmluisordoniez.ui.main
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.example.luisordonez.lastfmluisordoniez.R
+import com.example.luisordonez.lastfmluisordoniez.databinding.ActivityPostListBinding
+import com.example.luisordonez.lastfmluisordoniez.ui.main.fragment.TopArtistsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -30,6 +35,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        removeAllFragment(TopArtistsFragment(),"artistas")
     }
 
     override fun onBackPressed() {
@@ -81,5 +88,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+
+//    private fun showError(@StringRes errorMessage:Int){
+//        errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
+//        errorSnackbar?.setAction(R.string.retry, viewModel.errorClickListener)
+//        errorSnackbar?.show()
+//    }
+//
+//    private fun hideError(){
+//        errorSnackbar?.dismiss()
+//    }
+
+    fun removeAllFragment(replaceFragment: Fragment, tag: String) {
+        val manager = this.supportFragmentManager
+        val ft = manager.beginTransaction()
+        manager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        ft.replace(R.id.container_body, replaceFragment)
+        ft.commitAllowingStateLoss()
+
     }
 }

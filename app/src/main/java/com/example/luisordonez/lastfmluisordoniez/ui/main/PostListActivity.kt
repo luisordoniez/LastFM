@@ -1,4 +1,4 @@
-package com.example.luisordonez.lastfmluisordoniez.ui.post
+package com.example.luisordonez.lastfmluisordoniez.ui.main
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders

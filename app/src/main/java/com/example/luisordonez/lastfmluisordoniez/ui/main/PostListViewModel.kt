@@ -1,10 +1,10 @@
-package com.example.luisordonez.lastfmluisordoniez.ui.post
+package com.example.luisordonez.lastfmluisordoniez.ui.main
 
 import android.arch.lifecycle.MutableLiveData
 import android.view.View
 import com.example.luisordonez.lastfmluisordoniez.base.BaseViewModel
 import com.example.luisordonez.lastfmluisordoniez.R
-import com.example.luisordonez.lastfmluisordoniez.model.Post
+import com.example.luisordonez.lastfmluisordoniez.model.Response
 import com.example.luisordonez.lastfmluisordoniez.network.PostApi
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -54,8 +54,8 @@ class PostListViewModel: BaseViewModel() {
         loadingVisibility.value = View.GONE
     }
 
-    private fun onRetrievePostListSuccess(postList:List<Post>){
-        postListAdapter.updatePostList(postList)
+    private fun onRetrievePostListSuccess(postList: Response){
+        postListAdapter.updatePostList(postList.topartists?.artist)
     }
 
     private fun onRetrievePostListError(){

@@ -5,4 +5,5 @@ package com.example.luisordonez.lastfmluisordoniez.utils
  * Bogotá, Colombia.
  */
 
-const val BASE_URL: String = "https://jsonplaceholder.typicode.com"
+//const val BASE_URL: String = "https://jsonplaceholder.typicode.com"
+const val BASE_URL: String = "http://ws.audioscrobbler.com"

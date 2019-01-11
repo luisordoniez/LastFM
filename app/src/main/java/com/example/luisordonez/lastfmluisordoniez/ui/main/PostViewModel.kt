@@ -1,8 +1,8 @@
-package com.example.luisordonez.lastfmluisordoniez.ui.post
+package com.example.luisordonez.lastfmluisordoniez.ui.main
 
 import android.arch.lifecycle.MutableLiveData
 import com.example.luisordonez.lastfmluisordoniez.base.BaseViewModel
-import com.example.luisordonez.lastfmluisordoniez.model.Post
+import com.example.luisordonez.lastfmluisordoniez.model.ArtistItem
 
 /**
  * Created by luisordonez on 07,noviembre,2018
@@ -12,9 +12,9 @@ class PostViewModel: BaseViewModel() {
     private val postTitle = MutableLiveData<String>()
     private val postBody = MutableLiveData<String>()
 
-    fun bind(post: Post){
-        postTitle.value = post.title
-        postBody.value = post.body
+    fun bind(post: ArtistItem){
+        postTitle.value = post.name
+        postBody.value = post.url
     }
 
     fun getPostTitle():MutableLiveData<String>{
