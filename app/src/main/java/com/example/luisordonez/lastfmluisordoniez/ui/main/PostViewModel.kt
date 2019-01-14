@@ -9,19 +9,27 @@ import com.example.luisordonez.lastfmluisordoniez.model.ArtistItem
  * Bogotá, Colombia.
  */
 class PostViewModel: BaseViewModel() {
-    private val postTitle = MutableLiveData<String>()
-    private val postBody = MutableLiveData<String>()
+    private val title = MutableLiveData<String>()
+    private val listener = MutableLiveData<String>()
+    private val img = MutableLiveData<String>()
 
     fun bind(post: ArtistItem){
-        postTitle.value = post.name
-        postBody.value = post.url
+        title.value = post.name
+        img.value = post.image?.get(2)?.text
+//        img.value ="https://lastfm-img2.akamaized.net/i/u/34s/6e7eac3310bbf128cbae2c4c17443849.png"
+        listener.value = post.url
+
     }
 
-    fun getPostTitle():MutableLiveData<String>{
-        return postTitle
+    fun getTitle():MutableLiveData<String>{
+        return title
     }
 
-    fun getPostBody():MutableLiveData<String>{
-        return postBody
+    fun getBody():MutableLiveData<String>{
+        return listener
+    }
+
+    fun getImage():MutableLiveData<String>{
+        return img
     }
 }

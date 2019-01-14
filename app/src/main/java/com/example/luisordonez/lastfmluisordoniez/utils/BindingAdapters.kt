@@ -6,8 +6,11 @@ import android.databinding.BindingAdapter
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.luisordonez.lastfmluisordoniez.utils.extension.getParentActivity
+import com.squareup.picasso.Picasso
+
 
 /**
  * Created by luisordonez on 07,noviembre,2018
@@ -33,4 +36,11 @@ fun setMutableText(view: TextView, text: MutableLiveData<String>?) {
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.adapter = adapter
+}
+
+@BindingAdapter("imageUrl")
+fun setImageUrl(view: ImageView, imageUrl: String) {
+    Picasso.get()
+        .load(imageUrl)
+        .into(view)
 }
