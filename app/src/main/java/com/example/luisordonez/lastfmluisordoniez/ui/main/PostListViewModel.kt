@@ -34,7 +34,7 @@ class PostListViewModel: BaseViewModel() {
     }
 
     private fun loadPosts(){
-        val options : HashMap<String, String> = hashMapOf("query" to "batman")
+        val options : HashMap<String, String> = hashMapOf("query" to "matrix")
 
         subscription = postApi.getPosts(options)
             .subscribeOn(Schedulers.io())
@@ -44,7 +44,6 @@ class PostListViewModel: BaseViewModel() {
             .subscribe(
                 { result -> onRetrievePostListSuccess(result) },
                 { onRetrievePostListError() }
-
             )
     }
 

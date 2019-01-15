@@ -3,6 +3,7 @@ package com.example.luisordonez.lastfmluisordoniez.ui.main.fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.content.res.Configuration
 import android.databinding.DataBindingUtil
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +40,7 @@ class TopArtistsFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private var columns : Int? =null
 
 
     private lateinit var binding: FragmentTopArtistsBinding
@@ -56,9 +59,15 @@ class TopArtistsFragment : Fragment() {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_top_artists, container, false)
 
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            columns = 2
+        }else{
+            columns = 4
+        }
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_top_artists, container, false)
 
-        binding.postList.layoutManager = GridLayoutManager(context, 2)
+        binding.postList.layoutManager = GridLayoutManager(context, columns!!)
 
         viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
         binding.viewModel = viewModel
