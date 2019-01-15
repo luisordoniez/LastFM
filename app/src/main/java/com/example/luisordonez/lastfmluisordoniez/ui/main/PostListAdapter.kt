@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.luisordonez.lastfmluisordoniez.R
 import com.example.luisordonez.lastfmluisordoniez.databinding.ItemPostBinding
-import com.example.luisordonez.lastfmluisordoniez.model.ArtistItem
+import com.example.luisordonez.lastfmluisordoniez.model.Movie
 
 /**
  * Created by luisordonez on 07,noviembre,2018
@@ -15,7 +15,7 @@ import com.example.luisordonez.lastfmluisordoniez.model.ArtistItem
 class PostListAdapter: RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
 
 
-    private lateinit var postList:List<ArtistItem>
+    private lateinit var postList:List<Movie>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostListAdapter.ViewHolder {
         val binding: ItemPostBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_post, parent, false)
@@ -30,15 +30,15 @@ class PostListAdapter: RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
         return if(::postList.isInitialized) postList.size else 0
     }
 
-    fun updatePostList(postList: List<ArtistItem?>?){
-        this.postList = postList as List<ArtistItem>
+    fun updatePostList(postList: List<Movie?>?){
+        this.postList = postList as List<Movie>
         notifyDataSetChanged()
     }
 
 
     class ViewHolder(private val binding: ItemPostBinding):RecyclerView.ViewHolder(binding.root){
         private val viewModel = PostViewModel()
-        fun bind(post: ArtistItem){
+        fun bind(post: Movie){
             viewModel.bind(post)
             binding.viewModel = viewModel
         }

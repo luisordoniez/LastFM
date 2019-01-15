@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +58,7 @@ class TopArtistsFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_top_artists, container, false)
 
-        binding.postList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.postList.layoutManager = GridLayoutManager(context, 2)
 
         viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
         binding.viewModel = viewModel

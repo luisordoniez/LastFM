@@ -2,7 +2,8 @@ package com.example.luisordonez.lastfmluisordoniez.ui.main
 
 import android.arch.lifecycle.MutableLiveData
 import com.example.luisordonez.lastfmluisordoniez.base.BaseViewModel
-import com.example.luisordonez.lastfmluisordoniez.model.ArtistItem
+import com.example.luisordonez.lastfmluisordoniez.model.Movie
+import com.example.luisordonez.lastfmluisordoniez.utils.BASE_URL_IMAGE
 
 /**
  * Created by luisordonez on 07,noviembre,2018
@@ -10,14 +11,13 @@ import com.example.luisordonez.lastfmluisordoniez.model.ArtistItem
  */
 class PostViewModel: BaseViewModel() {
     private val title = MutableLiveData<String>()
-    private val listener = MutableLiveData<String>()
+    private val overview = MutableLiveData<String>()
     private val img = MutableLiveData<String>()
 
-    fun bind(post: ArtistItem){
-        title.value = post.name
-        img.value = post.image?.get(2)?.text
-//        img.value ="https://lastfm-img2.akamaized.net/i/u/34s/6e7eac3310bbf128cbae2c4c17443849.png"
-        listener.value = post.url
+    fun bind(post: Movie){
+        title.value = post.title
+        img.value = BASE_URL_IMAGE.plus(post.poster_path)
+        overview.value = post.overview
 
     }
 
@@ -26,7 +26,7 @@ class PostViewModel: BaseViewModel() {
     }
 
     fun getBody():MutableLiveData<String>{
-        return listener
+        return overview
     }
 
     fun getImage():MutableLiveData<String>{

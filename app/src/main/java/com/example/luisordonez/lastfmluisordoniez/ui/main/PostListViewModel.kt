@@ -9,6 +9,7 @@ import com.example.luisordonez.lastfmluisordoniez.network.PostApi
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
 
 import javax.inject.Inject
 
@@ -33,7 +34,9 @@ class PostListViewModel: BaseViewModel() {
     }
 
     private fun loadPosts(){
-        subscription = postApi.getPosts()
+        val options : HashMap<String, String> = hashMapOf("query" to "batman")
+
+        subscription = postApi.getPosts(options)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onRetrievePostListStart() }
@@ -55,7 +58,7 @@ class PostListViewModel: BaseViewModel() {
     }
 
     private fun onRetrievePostListSuccess(postList: Response){
-        postListAdapter.updatePostList(postList.topartists?.artist)
+        postListAdapter.updatePostList(postList.results)
     }
 
     private fun onRetrievePostListError(){
