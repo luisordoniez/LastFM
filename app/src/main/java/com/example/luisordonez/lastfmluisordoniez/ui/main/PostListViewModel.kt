@@ -28,13 +28,15 @@ class PostListViewModel: BaseViewModel() {
     val errorClickListener = View.OnClickListener { loadPosts() }
 
     val postListAdapter: PostListAdapter = PostListAdapter()
+    private var page :Int = 1
 
     init{
+        page = 1
         loadPosts()
     }
 
-    private fun loadPosts(){
-        val options : HashMap<String, String> = hashMapOf("query" to "matrix")
+    fun loadPosts(){
+        val options : HashMap<String, String> = hashMapOf("page" to page.toString())
 
         subscription = postApi.getPosts(options)
             .subscribeOn(Schedulers.io())
@@ -57,7 +59,10 @@ class PostListViewModel: BaseViewModel() {
     }
 
     private fun onRetrievePostListSuccess(postList: Response){
-        postListAdapter.updatePostList(postList.results)
+        if (postList.results!!.size!=0){
+            page = page +1
+        }
+        postListAdapter.updatePostList(postList.results!!)
     }
 
     private fun onRetrievePostListError(){

@@ -30,9 +30,15 @@ class PostListAdapter: RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
         return if(::postList.isInitialized) postList.size else 0
     }
 
-    fun updatePostList(postList: List<Movie?>?){
-        this.postList = postList as List<Movie>
-        notifyDataSetChanged()
+    fun updatePostList(movieList: List<Movie>){
+        if(::postList.isInitialized){
+            var temp = postList.size
+            this.postList += movieList
+            notifyItemInserted(temp)
+        }else{
+            this.postList = movieList
+            notifyDataSetChanged()
+        }
     }
 
 

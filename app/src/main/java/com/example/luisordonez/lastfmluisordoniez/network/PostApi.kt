@@ -14,6 +14,6 @@ import retrofit2.http.QueryMap
  */
 
 interface PostApi {
-    @GET("$VERSION/search/movie$BASE_PARAMETERS")
+    @GET("$VERSION/movie/popular$BASE_PARAMETERS")
     fun getPosts(@QueryMap options :Map<String, String> ): Observable<Response>
 }

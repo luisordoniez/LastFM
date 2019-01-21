@@ -16,7 +16,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.luisordonez.lastfmluisordoniez.R
 import com.example.luisordonez.lastfmluisordoniez.databinding.FragmentTopArtistsBinding
 import com.example.luisordonez.lastfmluisordoniez.ui.main.PostListViewModel
 
@@ -65,20 +64,24 @@ class TopArtistsFragment : Fragment() {
             columns = 4
         }
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_top_artists, container, false)
+        binding = DataBindingUtil.inflate(inflater, com.example.luisordonez.lastfmluisordoniez.R.layout.fragment_top_artists, container, false)
 
         binding.postList.layoutManager = GridLayoutManager(context, columns!!)
-
-        viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
-        binding.viewModel = viewModel
-
 
         viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
         viewModel.errorMessage.observe(this, Observer {
             errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
         })
         binding.viewModel = viewModel
-
+        binding.postList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (isLastItemDisplaying()) {
+                    //Calling the method getdata again
+                    viewModel.loadPosts()
+                }
+            }
+        })
         return binding.getRoot()
     }
 
@@ -140,11 +143,22 @@ class TopArtistsFragment : Fragment() {
 
     private fun showError(@StringRes errorMessage:Int){
         errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
-        errorSnackbar?.setAction(R.string.retry, viewModel.errorClickListener)
+        errorSnackbar?.setAction(com.example.luisordonez.lastfmluisordoniez.R.string.retry, viewModel.errorClickListener)
         errorSnackbar?.show()
     }
 
     private fun hideError(){
         errorSnackbar?.dismiss()
+    }
+
+    private fun isLastItemDisplaying(): Boolean {
+        val adapter = binding.postList.getAdapter()
+        if (adapter != null && adapter.getItemCount() != 0) {
+            val lastVisibleItemPosition = (binding.postList.getLayoutManager() as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+            if (lastVisibleItemPosition != RecyclerView.NO_POSITION && lastVisibleItemPosition == adapter.getItemCount() - 1) {
+                return true
+            }
+        }
+        return false
     }
 }
