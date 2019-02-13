@@ -1,6 +1,7 @@
 package com.example.luisordonez.lastfmluisordoniez.base
 
 import android.arch.lifecycle.ViewModel
+import com.example.luisordonez.lastfmluisordoniez.di.NetworkModule
 import com.example.luisordonez.lastfmluisordoniez.injection.component.DaggerViewModelInjector
 import com.example.luisordonez.lastfmluisordoniez.injection.component.ViewModelInjector
 import com.example.luisordonez.lastfmluisordoniez.injection.module.NetworkModule

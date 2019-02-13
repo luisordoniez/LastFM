@@ -1,4 +1,4 @@
-package com.example.luisordonez.lastfmluisordoniez.injection.module
+package com.example.luisordonez.lastfmluisordoniez.di
 
 import com.example.luisordonez.lastfmluisordoniez.utils.BASE_URL
 import com.example.luisordonez.lastfmluisordoniez.network.PostApi
